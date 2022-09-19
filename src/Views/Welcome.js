@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import { Link, useLocation } from "react-router-dom";
 import WelcomeForm from "../Components/WelcomeForm";
-import Login from "./Login";
 
 const Welcome = (props) => { 
 

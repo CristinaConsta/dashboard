@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import PropTypes from 'prop-types';
 import styled from "styled-components";
 import * as yup from "yup";
@@ -7,8 +7,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 const StyledParagraph = styled.p`
     text-align: center;
-    color: ${ props => props.theme.colors.red};
-`;
+    color: ${ props => props.theme.colors.darkShade};
+    align-items: center;
+  `;
 
 const StyledParagraphFormValidationErrors = styled.p`
     text-align: center;
@@ -16,7 +17,8 @@ const StyledParagraphFormValidationErrors = styled.p`
 `;
 
 const LoginForm = (props) =>{
-    const schema = yup.object().shape({
+
+       const schema = yup.object().shape({
         email: yup
             .string()
             .email("email is not valid")
@@ -38,7 +40,7 @@ const LoginForm = (props) =>{
     };
 
     return(
-            <form onSubmit = { handleSubmit(onSubmit) }>
+           <form onSubmit = { handleSubmit(onSubmit) }>
                 <StyledParagraph>
                     <label>Email </label>
                     <input {...register("email", { required: true })}></input>

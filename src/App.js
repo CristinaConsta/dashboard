@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from "react";
-import Login from "./Views/Login.js";
+// import Login from "./Views/Login.js";
+import Login from "./Views/Login";
 import theme from "./config/theme.js";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./config/GlobalStyles";
@@ -13,6 +13,7 @@ import Header from './Components/Header';
 import useAuth from "./services/firebase/useAuth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase.js";
+import LoginOld from './Views/LoginOld';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
       />
     );
   }  
+
 
   return (
     <div>

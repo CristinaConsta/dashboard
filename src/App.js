@@ -5,7 +5,7 @@ import Login from "./Views/Login.js";
 import theme from "./config/theme.js";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./config/GlobalStyles";
-import { Switch, Route, useLocation, Redirect} from "react-router-dom";
+import { Switch, Route, useLocation, Redirect, BrowserRouter} from "react-router-dom";
 import Charts from './Views/Charts';
 import Dashboard from './Views/Dashboard';
 import Welcome from './Views/Welcome';
@@ -66,24 +66,14 @@ function App() {
         <Header onClick={handleClick} open={menuOpen} signOut={signUserOut}  />
         <GlobalStyles />
         <div onClick={handleOutsideClick}>  
-          <Switch>
-                      
-          <Route path="/">
-              <Welcome />
-          </Route>
+          <Switch>  
+            <Route exact path="/" component={Welcome}/>
 
-          <Protected authenticated={isAuthenticated} exact path="/dashboard">
-           <Dashboard />
-          </Protected>
+            <Protected authenticated={isAuthenticated} exact path="/Dashboard" component={Dashboard} />
 
-          <Protected authenticated={isAuthenticated} exact path="/charts">
-           <Charts />
-          </Protected>
+            <Protected authenticated={isAuthenticated} exact path="/Charts" component={Charts}/>
 
-          <Route path="/login">
-              <Login />
-          </Route>
-
+            <Route exact path="/Login" component={Login}/>
            </Switch>
           </div>
       </ThemeProvider>

@@ -46,7 +46,7 @@ body {
 .coloured-nav {
   background: linear-gradient(
     180deg,
-    red,
     rgba(255, 204, 203)
+    red,
   );
 }

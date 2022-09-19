@@ -22,7 +22,6 @@ const StyledParagraph = styled.p`
     return (
     <div>
         <StyledHeading1> Charts </StyledHeading1>
-
     </div>
 );
 };

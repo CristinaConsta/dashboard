@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import useAuth from "../services/firebase/useAuth";
 
-
 function Menu(props) {  
     const {open, onClick} = props;
     const location = useLocation();
@@ -102,8 +101,8 @@ text-align:right;
     width: 100%;
     background: linear-gradient(
       180deg,
-      ${({ theme }) => theme.colors.lightPurple} 0%,
-      ${({ theme }) => theme.colors.purple} 100%
+      ${({ theme }) => theme.colors.lightRed} 0%,
+      ${({ theme }) => theme.colors.red} 100%
     );
     height: 50px;
     display: flex;

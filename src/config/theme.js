@@ -4,6 +4,8 @@ const theme = {
     lightPurple: "#95A2FB",
     grey: "#E9E9EC",
     green: "#6FCF97",
+    red: "#FF0000",
+    lightRed: "#FFCCCB",
     darkGreen: "#256C43",
     darkShade: {
       100: "rgba(31, 32, 65, 100)",

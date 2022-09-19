@@ -42,3 +42,11 @@
 body {
   margin: 0;
 }
+
+.coloured-nav {
+  background: linear-gradient(
+    180deg,
+    red,
+    rgba(255, 204, 203)
+  );
+}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import useAuth from "../services/firebase/useAuth";
+import NavigationBar from "./NavigationBar";
 
 function Menu(props) {  
     const {open, onClick} = props;
@@ -110,20 +111,22 @@ text-align:right;
   `;
 
     return (
-        <div>
-          <StyledMenuWrapper open={open}>
-              <Menu  onClick= {handleClick}/>
-          </StyledMenuWrapper>     
+        // <div>
+        //   <StyledMenuWrapper open={open}>
+        //       <Menu  onClick= {handleClick}/>
+        //   </StyledMenuWrapper>
               
-          <StyledWrapper> 
-            <StyledBurgerMenu onClick={handleClickBurgerMenu}>
-              <hr />
-              <hr />
-              <hr />
-              <hr />
-            </StyledBurgerMenu>          
-          </StyledWrapper>
-        </div>
+        //   <StyledWrapper> 
+        //     <StyledBurgerMenu onClick={handleClickBurgerMenu}>
+        //       <hr />
+        //       <hr />
+        //       <hr />
+        //       <hr />
+        //     </StyledBurgerMenu>          
+        //   </StyledWrapper>
+        // </div>
+        
+        <NavigationBar/>
       );
 }
     

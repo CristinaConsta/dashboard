@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
+import ChartForm from "../Components/ChartsForm";
 
 const Charts = (props) => { 
     const StyledHeading1 = styled.h1`
@@ -22,6 +22,7 @@ const StyledParagraph = styled.p`
     return (
     <div>
         <StyledHeading1> Charts </StyledHeading1>
+        <ChartForm barCount={10} bars={50}/>
     </div>
 );
 };

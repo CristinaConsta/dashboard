@@ -24,9 +24,6 @@ const Login = (props) => {
   return (
     <>
       <Modal show={props.show} cancel={props.close} onHide={props.close} aria-labelledby="contained-modal-title-vcenter" centered>
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Login</Modal.Title>
-        </Modal.Header>
         <Modal.Body>
           <LoginForm
                   onEmailSubmit={handleEmailSubmit}
@@ -37,9 +34,9 @@ const Login = (props) => {
           <Button variant="secondary" onClick={props.close}>
             Close
           </Button>
-          <Button variant="primary" onClick={props.close}>
+          {/* <Button variant="primary" onClick={props.close}>
             Login
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </>

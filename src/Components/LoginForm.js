@@ -4,6 +4,7 @@ import styled from "styled-components";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Button from 'react-bootstrap/Button';
 
 const StyledParagraph = styled.p`
     text-align: center;
@@ -14,6 +15,13 @@ const StyledParagraph = styled.p`
 const StyledParagraphFormValidationErrors = styled.p`
     text-align: center;
     color: red;
+`;
+
+const StyledHeading1 = styled.h1`
+    positition: absolute;
+    padding-top: 5%;
+    text-align: center;
+    color: ${ props => props.theme.colors.lightRed};
 `;
 
 const LoginForm = (props) =>{
@@ -40,6 +48,8 @@ const LoginForm = (props) =>{
     };
 
     return(
+        <>
+         <StyledHeading1> Login </StyledHeading1>
            <form onSubmit = { handleSubmit(onSubmit) }>
                 <StyledParagraph>
                     <label>Email </label>
@@ -56,9 +66,10 @@ const LoginForm = (props) =>{
                 <StyledParagraphFormValidationErrors> {errors.password && errors.password?.message} </StyledParagraphFormValidationErrors>
                 <br></br>
                 <StyledParagraph>
-                    <input type="submit" value="Login"></input>
+                    <input type="submit" value="Login" ></input>
                 </StyledParagraph>
             </form>
+        </>
     )
 }
 

@@ -13,7 +13,6 @@ import Header from './Components/Header';
 import useAuth from "./services/firebase/useAuth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase.js";
-import LoginOld from './Views/LoginOld';
 
 function App() {
 

@@ -50,3 +50,8 @@ body {
     red,
   );
 }
+
+.navigation{
+  font-size: 100px;
+  font-weight: bold;
+}

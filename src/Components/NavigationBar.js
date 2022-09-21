@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 function NavigationBar(props) {
 
   const [show, setShow] = useState(false);
-  const {open, onClick, signOut} = props; 
+  // const {open, onClick, signOut} = props; 
     
   return (
     <Navbar collapseOnSelect variant="light" expand="lg" sticky="top" className="coloured-nav">
@@ -17,7 +17,7 @@ function NavigationBar(props) {
         <Navbar.Brand href="#Welcome">Solent</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav>
+          <Nav classname="navigation">
             <Nav.Link href="/">Welcome</Nav.Link>
             <Nav.Link onClick={() => setShow(true)}>Login</Nav.Link>
             <Nav.Link href="/Dashboard">Dashboard</Nav.Link>

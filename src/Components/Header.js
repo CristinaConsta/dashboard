@@ -1,22 +1,14 @@
 import React, { useEffect} from "react";
 import PropTypes from 'prop-types';
-import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import useAuth from "../services/firebase/useAuth";
-
 import NavigationBar from "./NavigationBar";
 
   function Header(props) {
     
-    const {open, onClick, signOut} = props; 
+    const { signOut} = props; 
     const { user } = useAuth();
-  
-  //   const handleClick = (e) => {
-  //     e.preventDefault();
-  //     onClick(e);    
-  //     console.log('Header.handleClick()');
-  // }
-  
+ 
 
   const StyledWrapper = styled.div`
     width: 100%;
@@ -48,10 +40,10 @@ import NavigationBar from "./NavigationBar";
         <div>          
         <StyledWrapper >
              <NavigationBar />
-        <StyledUser>
-        <p>Welcome, {user.email}</p>
-        <span style={{ cursor: "pointer" }} onClick={() => signOut()}> Sign out </span>
-        </StyledUser>      
+             <StyledUser>
+               <p>Welcome, {user.email}</p>
+               <span style={{ cursor: "pointer" }} onClick={() => signOut()}> Sign out - NU FACE REFRESH </span>
+             </StyledUser>      
         </StyledWrapper>
         </div>
     );
@@ -60,8 +52,7 @@ import NavigationBar from "./NavigationBar";
 
 
     Header.propTypes = {
-      onClick: PropTypes.func.isRequired,
-      open: PropTypes.bool.isRequired
+      signOut: PropTypes.func.isRequired
     };
     
     export default Header;

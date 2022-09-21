@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
+
 function Bar(props) {
     const { percentage } = props;
-  
+    
+    
     const StyledBar = styled.div`
       background: linear-gradient(
         180deg,

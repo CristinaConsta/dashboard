@@ -10,7 +10,7 @@ const Login = (props) => {
   const [severErrorMessage, setServerErrorMessage] = useState("");
 
   const handleEmailSubmit = async (data) => {
-      console.log("Join.handleEmailSubmit(): data = ", data);
+      console.log("Login.handleEmailSubmit(): data = ", data);
 
       try {
           const { email, password } = data;

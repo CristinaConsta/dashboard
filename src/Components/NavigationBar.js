@@ -4,14 +4,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import '../App.css';
 import Login from '../Views/Login';
 import React, { useState } from 'react';
-import useAuth from "../services/firebase/useAuth";
+
 
 function NavigationBar(props) {
 
   const [show, setShow] = useState(false);
   const {open, onClick, signOut} = props; 
-  const { user } = useAuth();
-  
+    
   return (
     <Navbar collapseOnSelect variant="light" expand="lg" sticky="top" className="coloured-nav">
       <Container>
@@ -23,14 +22,9 @@ function NavigationBar(props) {
             <Nav.Link onClick={() => setShow(true)}>Login</Nav.Link>
             <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
             <Nav.Link href="/Charts">Evolution</Nav.Link>
-            <Navbar.Text> Welcome, {user.displayName} - {user.email}</Navbar.Text>
-            <Nav.Link style={{ cursor: "pointer" }} onClick={() => signOut()}> Sign out </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-      </Container>
-
-      
-        
+      </Container>        
       <Login show={show} close={() => setShow(false)} />
     </Navbar>
   );

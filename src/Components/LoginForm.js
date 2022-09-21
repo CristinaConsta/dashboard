@@ -25,8 +25,9 @@ const StyledHeading1 = styled.h1`
 `;
 
 const LoginForm = (props) =>{
+    const { onEmailSubmit, serverErrorMessage } = props;
 
-       const schema = yup.object().shape({
+    const schema = yup.object().shape({
         email: yup
             .string()
             .email("email is not valid")
@@ -43,14 +44,14 @@ const LoginForm = (props) =>{
         handleSubmit,
     } = useForm({ resolver: yupResolver(schema) });
 
-    const onSubmit = (data) => {
-        console.log(data);
-    };
+    // const onSubmit = (data) => {
+    //     console.log(data);
+    // };
 
     return(
         <>
          <StyledHeading1> Login </StyledHeading1>
-           <form onSubmit = { handleSubmit(onSubmit) }>
+           <form onSubmit = { handleSubmit(onEmailSubmit) }>
                 <StyledParagraph>
                     <label>Email </label>
                     <input {...register("email", { required: true })}></input>
@@ -74,6 +75,9 @@ const LoginForm = (props) =>{
 }
 
 
-LoginForm.propTypes={};
+LoginForm.propTypes={
+    onEmailSubmit: PropTypes.func.isRequired,
+    serverErrorMessage: PropTypes.string.isRequired
+};
 
 export default LoginForm ;

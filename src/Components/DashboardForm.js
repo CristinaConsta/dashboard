@@ -18,7 +18,8 @@ const columns = [
 const DashboardForm = (props) => { 
 
 // Firebase
-const [grades, setGrades] = useState([]);
+// const [grades, setGrades] = useState([]);
+const [rows, setRows] = useState([]);
 const { getCourses, getGrades } = useData();
 
 const getCoursesData = async() =>{
@@ -28,28 +29,50 @@ const getCoursesData = async() =>{
         gradesSnap.forEach((doc) => {
         grades.push({...doc.data(), ...{id: doc.id}});
         });
-       setGrades(grades)      
+       return grades;
     }
 };
 
+function getDate(timestamp)
+{
+    if(timestamp)
+        return timestamp.toDate().toLocaleDateString('en-UK', {day: "numeric", month:"short", year: "numeric"});
+    
+    return "";
+}
+
 useEffect(() =>{
-    getCoursesData();
+
+    getCoursesData().then((grades) =>
+    {
+        var formattedGrades = [];
+        var id = 1;
+        grades.map(g => {
+
+            formattedGrades.push({
+                id: id, 
+                assignment: g.assignment,
+                weight: g.weight,
+                grade: g.grade,
+                mark: g.mark,
+                feedback: g.feedback,
+                due_date: getDate(g.due_date),
+                submit_date: getDate(g.submit_date),
+                graded_date: getDate(g.graded_date)
+            });
+
+            id++;
+        });
+
+        setRows(formattedGrades);
+    });
 }, []);
 
-
-// const rows = 
-//  [
-//     { id: 1, assignment: 'Assignment 1', weight: 25, grade: "A1", mark: 100, feedback: "Great job!", due_date: "25/10/2021", submit_date:"20/10/2021", graded_date: "30/11/2021"},
-//     { id: 2, assignment: 'Assignment 2', weight: 25, grade: "A3", mark: 83, feedback: "Needs improving!", due_date: "15/11/2021", submit_date:"23/11/2021", graded_date: "05/12/2021"},
-//     { id: 3, assignment: 'Exam', weight: 50, grade: "A2", mark: 92, feedback: "Keep it up!", due_date: "11/12/2021", submit_date:"11/12/2021", graded_date: "07/01/2022"},
-// ]
-// ;
 
 return ( 
     <div style={{height: 100}}>
         <DataGrid
-            // rows={rows}
-            rows={grades}
+            rows={rows}
             columns={columns}
             autoHeight
             >

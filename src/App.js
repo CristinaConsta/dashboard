@@ -16,12 +16,10 @@ import NavigationBar from "./Components/NavigationBar";
 
 function App() {
 
-
   const [menuOpen, setMenuOpen] = useState(false);
   const app = initializeApp(firebaseConfig);
-  const { isAuthenticated, signUserOut } = useAuth();
+  const { user, isAuthenticated, signUserOut } = useAuth();
   const location = useLocation();
-
 
   const handleClick = (e) => {
     // e.preventDefault();
@@ -39,8 +37,8 @@ function App() {
     setMenuOpen(false)
   },[location]);
 
+  /*function Protected({ authenticated, children, ...rest }) {
 
-  function Protected({ authenticated, children, ...rest }) {
     return (
       <Route
         {...rest}
@@ -58,8 +56,7 @@ function App() {
         }
       />
     );
-  }  
-
+  }  */
 
   return (
     <div>
@@ -69,13 +66,12 @@ function App() {
         <div onClick={handleOutsideClick}>  
           <Switch>  
             <Route exact path="/" component={Welcome}/>
-            <Protected authenticated={isAuthenticated} exact path="/Dashboard" >
+            {/* <Protected authenticated={isAuthenticated} exact path="/Dashboard" > */}
               <Dashboard/>
-            </Protected>
-            <Protected authenticated={isAuthenticated} exact path="/Charts"/>
+            {/* </Protected> */}
+            {/* <Protected authenticated={isAuthenticated} exact path="/Charts"/> */}
               <Charts/>
-            <Protected/>
-            {/* <Route exact path="/Login" component={Login}/> */}
+            {/* <Protected/> */}
            </Switch>
           </div>
       </ThemeProvider>

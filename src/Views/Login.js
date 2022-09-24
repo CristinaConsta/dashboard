@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form, FormGroup } from 'react-bootstrap';
 import useAuth from "../services/firebase/useAuth";
-import LoginForm from "../Components/LoginForm";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -50,7 +49,7 @@ const Login = (props) => {
 
   return (
     <>
-      <Modal show={props.show} cancel={props.close} onHide={props.close} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal show={props.show} onHide={props.close} aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>

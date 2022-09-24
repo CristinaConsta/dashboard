@@ -2,27 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import WelcomeForm from "../Components/WelcomeForm";
 
-const Welcome = (props) => { 
-
-    const StyledHeading1 = styled.h1`
-    text-align: center;
-    color: ${ props => props.theme.colors.darkShade};
+const StyledHeading1 = styled.h1`
+text-align: center;
+color: ${ props => props.theme.colors.darkShade};
 `;
 
 const StyledHeading2 = styled.h2`
-    text-align: center;
-    color: ${ props => props.theme.colors.darkShade};
+text-align: center;
+color: ${ props => props.theme.colors.darkShade};
 `;
 
-const StyledButton = styled.button`
-  border-color: ${ props => props.theme.colors.lightRed};
-  color: ${ props => props.theme.colors.darkShade};
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-`;
+
+const Welcome = (props) => { 
 
     return ( 
     <div>

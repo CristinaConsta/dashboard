@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../App.css';
 import Login from '../Views/Login';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from "../services/firebase/useAuth";
 import PropTypes from 'prop-types';
 

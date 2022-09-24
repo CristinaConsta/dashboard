@@ -1,6 +1,5 @@
 import './App.css';
 import React, {useState, useEffect} from "react";
-// import Login from "./Views/Login.js";
 import Login from "./Views/Login";
 import theme from "./config/theme.js";
 import { ThemeProvider } from "styled-components";
@@ -9,10 +8,11 @@ import { Switch, Route, useLocation, Redirect, BrowserRouter} from "react-router
 import Charts from './Views/Charts';
 import Dashboard from './Views/Dashboard';
 import Welcome from './Views/Welcome';
-import Header from './Components/Header';
 import useAuth from "./services/firebase/useAuth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase.js";
+import NavigationBar from "./Components/NavigationBar";
+
 
 function App() {
 
@@ -64,7 +64,7 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Header onClick={handleClick} open={menuOpen} signOut={signUserOut}  />
+        <NavigationBar onClick={handleClick} open={menuOpen} signOut={signUserOut}  />
         <GlobalStyles />
         <div onClick={handleOutsideClick}>  
           <Switch>  

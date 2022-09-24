@@ -44,17 +44,13 @@ const LoginForm = (props) =>{
         handleSubmit,
     } = useForm({ resolver: yupResolver(schema) });
 
-    // const onSubmit = (data) => {
-    //     console.log(data);
-    // };
 
     return(
         <>
-         <StyledHeading1> Login </StyledHeading1>
            <form onSubmit = { handleSubmit(onEmailSubmit) }>
                 <StyledParagraph>
                     <label>Email </label>
-                    <input {...register("email", { required: true })}></input>
+                    <input type='email' {...register("email", { required: true })}></input>
                 </StyledParagraph>
                 <StyledParagraphFormValidationErrors>{errors.email && errors.email?.message}</StyledParagraphFormValidationErrors>
     
@@ -62,7 +58,7 @@ const LoginForm = (props) =>{
     
                 <StyledParagraph>
                     <label>Password </label>
-                    <input {...register("password", { required: true })}></input>
+                    <input type='password' {...register("password", { required: true })}></input>
                 </StyledParagraph>
                 <StyledParagraphFormValidationErrors> {errors.password && errors.password?.message} </StyledParagraphFormValidationErrors>
                 <br></br>

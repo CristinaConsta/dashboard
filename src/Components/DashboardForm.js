@@ -18,7 +18,7 @@ const columns = [
 const DashboardForm = (props) => { 
 
 // Firebase
-const [setGrades] = useState([]);
+const [grades, setGrades] = useState([]);
 const { getCourses, getGrades } = useData();
 
 const getCoursesData = async() =>{
@@ -26,28 +26,30 @@ const getCoursesData = async() =>{
     let grades = [];
     if(gradesSnap.size){
         gradesSnap.forEach((doc) => {
-            grades.push({...doc.data(), ...{id: doc.id}});
+        grades.push({...doc.data(), ...{id: doc.id}});
         });
-        setGrades(grades)
+       setGrades(grades)      
     }
-}
+};
+
 useEffect(() =>{
     getCoursesData();
 }, []);
 
-//
-const rows = 
- [
-    { id: 1, assignment: 'Assignment 1', weight: 25, grade: "A1", mark: 100, feedback: "Great job!", due_date: "25/10/2021", submit_date:"20/10/2021", graded_date: "30/11/2021"},
-    { id: 2, assignment: 'Assignment 2', weight: 25, grade: "A3", mark: 83, feedback: "Needs improving!", due_date: "15/11/2021", submit_date:"23/11/2021", graded_date: "05/12/2021"},
-    { id: 3, assignment: 'Exam', weight: 50, grade: "A2", mark: 92, feedback: "Keep it up!", due_date: "11/12/2021", submit_date:"11/12/2021", graded_date: "07/01/2022"},
-]
-;
+
+// const rows = 
+//  [
+//     { id: 1, assignment: 'Assignment 1', weight: 25, grade: "A1", mark: 100, feedback: "Great job!", due_date: "25/10/2021", submit_date:"20/10/2021", graded_date: "30/11/2021"},
+//     { id: 2, assignment: 'Assignment 2', weight: 25, grade: "A3", mark: 83, feedback: "Needs improving!", due_date: "15/11/2021", submit_date:"23/11/2021", graded_date: "05/12/2021"},
+//     { id: 3, assignment: 'Exam', weight: 50, grade: "A2", mark: 92, feedback: "Keep it up!", due_date: "11/12/2021", submit_date:"11/12/2021", graded_date: "07/01/2022"},
+// ]
+// ;
 
 return ( 
     <div style={{height: 100}}>
         <DataGrid
-            rows={rows}
+            // rows={rows}
+            rows={grades}
             columns={columns}
             autoHeight
             >

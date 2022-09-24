@@ -4,6 +4,8 @@ import useData from "../services/firebase/useData";
 
 
 const columns = [
+    { field: 'year', headerName: 'Year', flex: 1},
+    { field: 'course', headerName: 'Course', flex: 1},
     { field: 'assignment', headerName: 'Assignment Name', flex: 1 },
     { field: 'weight', headerName: 'Weight (%)', flex: 1 },
     { field: 'grade', headerName: 'Grade', flex: 1 },
@@ -51,6 +53,8 @@ useEffect(() =>{
 
             formattedGrades.push({
                 id: id, 
+                year: g.year,
+                course: g.course,
                 assignment: g.assignment,
                 weight: g.weight,
                 grade: g.grade,

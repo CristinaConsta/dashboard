@@ -50,7 +50,7 @@ function App() {
           ) : (
             <Redirect
               to={{
-                pathname: "/Login",
+                pathname: "/",
                 state: { from: location },
               }}
             />
@@ -69,12 +69,13 @@ function App() {
         <div onClick={handleOutsideClick}>  
           <Switch>  
             <Route exact path="/" component={Welcome}/>
-
-            <Protected authenticated={isAuthenticated} exact path="/Dashboard" component={Dashboard} />
-
-            <Protected authenticated={isAuthenticated} exact path="/Charts" component={Charts}/>
-
-            <Route exact path="/Login" component={Login}/>
+            <Protected authenticated={isAuthenticated} exact path="/Dashboard" >
+              <Dashboard/>
+            </Protected>
+            <Protected authenticated={isAuthenticated} exact path="/Charts"/>
+              <Charts/>
+            <Protected/>
+            {/* <Route exact path="/Login" component={Login}/> */}
            </Switch>
           </div>
       </ThemeProvider>

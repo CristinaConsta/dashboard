@@ -44,18 +44,52 @@ function getDate(timestamp)
     return "";
 }
 
+function groupBy(data, key) {
+    return data.reduce(function(storage, item) {
+
+        var group = item[key.toLowerCase()];
+        storage[group] = storage[group] || [];
+        storage[group].push(item);
+            
+        return storage; 
+    }, {}); 
+};
+
 useEffect(() =>{
 
     getCoursesData().then((grades) =>
     {
+        var yearAverages = [];
+
+        var years = groupBy(grades, 'Year');
+        Object.keys(years).forEach(year => {
+            var yearSum = 0;
+            var courses = groupBy(years[year], 'Course');
+
+            var courseAverages = [];
+
+            Object.keys(courses).forEach(course => {
+                var courseSum = 0;
+                courses[course].forEach(g=> {
+                    courseSum += g.mark;
+                });
+
+                yearSum += courseSum;
+                var courseAverage = courseSum / courses[course].length;
+                courseAverages[course] = courseAverage;
+            });
+
+            var yearAverage = yearSum / years[year].length;
+            yearAverages[year] = { average: yearAverage, courseAverages: courseAverages };
+        });
+
         var formattedGrades = [];
-        var id = 1;
+
         grades.map(g => {
 
             formattedGrades.push({
-                //id: id, 
-                Year: g.year,
-                Course: g.course,
+                Year: g.year + " - Final Mark: " + yearAverages[g.year].average,
+                Course: g.course + " - Final Mark: " + yearAverages[g.year].courseAverages[g.course],
                 Assignment: g.assignment,
                 Weight: g.weight,
                 Grade: g.grade,
@@ -65,8 +99,6 @@ useEffect(() =>{
                 "Date Submitted": getDate(g.submit_date),
                 "Date Graded": getDate(g.graded_date)
             });
-
-            id++;
         });
 
         setRows(formattedGrades);

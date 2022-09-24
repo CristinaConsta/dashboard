@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import useData from "../services/firebase/useData";
+import { ColumnDirective, ColumnsDirective, GridComponent, Filter, Group, Inject, Page, Sort } from '@syncfusion/ej2-react-grids';
 
 
-const columns = [
+/*const columns = [
     { field: 'year', headerName: 'Year', flex: 1},
     { field: 'course', headerName: 'Course', flex: 1},
     { field: 'assignment', headerName: 'Assignment Name', flex: 1 },
@@ -14,7 +15,7 @@ const columns = [
     { field: 'due_date', headerName: 'Due Date', flex: 1 },
     { field: 'submit_date', headerName: 'Date Submitted', flex: 1 },
     { field: 'graded_date', headerName: 'Date Graded', flex: 1 }
-  ];
+  ];*/
 
 
 const DashboardForm = (props) => { 
@@ -52,17 +53,17 @@ useEffect(() =>{
         grades.map(g => {
 
             formattedGrades.push({
-                id: id, 
-                year: g.year,
-                course: g.course,
-                assignment: g.assignment,
-                weight: g.weight,
-                grade: g.grade,
-                mark: g.mark,
-                feedback: g.feedback,
-                due_date: getDate(g.due_date),
-                submit_date: getDate(g.submit_date),
-                graded_date: getDate(g.graded_date)
+                //id: id, 
+                Year: g.year,
+                Course: g.course,
+                Assignment: g.assignment,
+                Weight: g.weight,
+                Grade: g.grade,
+                Mark: g.mark,
+                Feedback: g.feedback,
+                "Due Date": getDate(g.due_date),
+                "Date Submitted": getDate(g.submit_date),
+                "Date Graded": getDate(g.graded_date)
             });
 
             id++;
@@ -72,15 +73,36 @@ useEffect(() =>{
     });
 }, []);
 
+const groupOptions = {
+    columns: ["Year", "Course"],
+    showDropArea: false
+}
 
 return ( 
     <div style={{height: 100}}>
-        <DataGrid
+        
+        <GridComponent dataSource={rows} allowFiltering={true} allowSorting={true} allowGrouping={true} groupSettings={groupOptions}>
+            <ColumnsDirective>
+                <ColumnDirective field='Year' width='100'/>
+                <ColumnDirective field='Course' width='100'/>
+                <ColumnDirective field='Assignment' width='100'/>
+                <ColumnDirective field='Weight' width='100'/>
+                <ColumnDirective field='Grade' width='100'/>
+                <ColumnDirective field='Mark' width='100'/>
+                <ColumnDirective field='Feedback' width='100'/>
+                <ColumnDirective field='Due Date' width='100'/>
+                <ColumnDirective field='Date Submitted' width='100'/>
+                <ColumnDirective field='Date Graded' width='100'/>
+            </ColumnsDirective>
+            <Inject services={[Page, Sort, Filter, Group]}/>
+        </GridComponent>
+        
+        {/* <DataGrid
             rows={rows}
             columns={columns}
             autoHeight
             >
-        </DataGrid>
+        </DataGrid> */}
     </div>
 );
 };

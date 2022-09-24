@@ -5,8 +5,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { registerLicense } from '@syncfusion/ej2-base';
 
-
+registerLicense('ORg4AjUWIQA/Gnt2VVhiQlFadVlJXGFWfVJpTGpQdk5xdV9DaVZUTWY/P1ZhSXxRdkxhXX5YcHVVT2lZWEM=');
 
 ReactDOM.render(
 <Router>

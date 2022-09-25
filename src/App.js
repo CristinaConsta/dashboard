@@ -37,7 +37,7 @@ function App() {
     setMenuOpen(false)
   },[location]);
 
-  /*function Protected({ authenticated, children, ...rest }) {
+  function Protected({ authenticated, children, ...rest }) {
 
     return (
       <Route
@@ -56,7 +56,7 @@ function App() {
         }
       />
     );
-  }  */
+  }
 
   return (
     <div>
@@ -66,12 +66,14 @@ function App() {
         <div onClick={handleOutsideClick}>  
           <Switch>  
             <Route exact path="/" component={Welcome}/>
-            {/* <Protected authenticated={isAuthenticated} exact path="/Dashboard" > */}
+            <Route exact path="/dashboard" component={Dashboard}/>
+            <Route exact path="/charts" component={Charts}/>
+            {/* <Protected authenticated={isAuthenticated} exact path="/Dashboard" >
               <Dashboard/>
-            {/* </Protected> */}
-            {/* <Protected authenticated={isAuthenticated} exact path="/Charts"/> */}
+            </Protected> */}
+            {/* <Protected authenticated={isAuthenticated} exact path="/Charts"/>
               <Charts/>
-            {/* <Protected/> */}
+            <Protected/> */}
            </Switch>
           </div>
       </ThemeProvider>

@@ -1,71 +1,42 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
+import * as React from "react";
+import { Category, ChartComponent, ColumnSeries, DataLabel, Inject, Legend, LineSeries, SeriesCollectionDirective, SeriesDirective, Tooltip } from '@syncfusion/ej2-react-charts';
+import {getDate, groupBy} from '../utils';
+import useData from "../services/firebase/useData";
 
+const ChartForm = () => {
 
-function Bar(props) {
-    const { percentage } = props;
-    
-    
-    const StyledBar = styled.div`
-      background: linear-gradient(
-        180deg,
-        rgba(56, 149, 95, 0.25),
-        rgba(102, 210, 234, 0.25)
-      );
-      width: 30px;
-      height: 70.74px;
-      border-radius: 2px;
-      display: flex;
-      align-items: flex-end;
-    `;
-  
-    const StyledInnerBar = styled.div`
-      background: linear-gradient(
-        180deg,
-        rgba(56, 149, 95, 1),
-        rgba(102, 210, 234, 0.5)
-      );
-  
-      opacity: 100 !important;
-      height: ${props => props.height + "%"};
-      width: 100%;
-      border-radius: 1px;
-    `;
-  
-    return (
-      <StyledBar>
-        <StyledInnerBar height={percentage}> </StyledInnerBar>
-      </StyledBar>
-    );
-  }
-  
-  Bar.propTypes = {
-    percentage: PropTypes.number.isRequired
+  const { getGrades } = useData();
+
+  const getCoursesData = async () => {
+      const gradesSnap = await getGrades();
+      let grades = [];
+      if (gradesSnap.size) {
+          gradesSnap.forEach((doc) => {
+              grades.push({ ...doc.data(), ...{ id: doc.id } });
+          });
+          return grades;
+      }
   };
-  
-  
-  
-  
-  function ChartForm(props) {
-    const { bars, barCount } = props;
-  
-    const StyledHistogram = styled.div`
-      display: flex;
-      justify-content: space-around;
-    `;
-  
-    return (
-      <StyledHistogram>
-        {/* {bars.map((b, i) => (i <= barCount ? <Bar percentage={b} /> : ""))} */}
-        {bars}
-      </StyledHistogram>
-    );
-  }
-  
-  ChartForm.propTypes = {
-    bars: PropTypes.array.isRequired,
-    barCount: PropTypes.number.isRequired
-  };
-  
-  export default ChartForm;
+
+  const data = [
+    { month: 'Jan', sales: 35 }, { month: 'Feb', sales: 28 },
+    { month: 'Mar', sales: 34 }, { month: 'Apr', sales: 32 },
+    { month: 'May', sales: 40 }, { month: 'Jun', sales: 32 },
+    { month: 'Jul', sales: 35 }, { month: 'Aug', sales: 55 },
+    { month: 'Sep', sales: 38 }, { month: 'Oct', sales: 30 },
+    { month: 'Nov', sales: 25 }, { month: 'Dec', sales: 32 }
+  ];
+
+  const primaryxAxis = { valueType: 'Category' };
+
+  return (
+    <ChartComponent id='charts' primaryXAxis={primaryxAxis}>
+      <Inject services={[ColumnSeries, Legend, Tooltip, DataLabel, LineSeries, Category]} />
+      <SeriesCollectionDirective>
+        <SeriesDirective dataSource={data} xName='month' yName='sales' type='Column' name='Sales' />
+      </SeriesCollectionDirective>
+    </ChartComponent>
+  )
+};
+
+export default ChartForm;

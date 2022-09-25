@@ -33,4 +33,5 @@ function WelcomeForm(){
 };
 
 WelcomeForm.propTypes = {};
+
 export default WelcomeForm;

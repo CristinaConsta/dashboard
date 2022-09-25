@@ -8,6 +8,7 @@
     "@hookform/resolvers": "^2.9.8",
     "@mui/material": "^5.10.6",
     "@mui/x-data-grid": "^5.17.3",
+    "@syncfusion/ej2-react-charts": "^20.2.50",
     "@syncfusion/ej2-react-grids": "^20.2.49",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid } from '@mui/x-data-grid';
 import useData from "../services/firebase/useData";
 import { ColumnDirective, ColumnsDirective, GridComponent, Filter, Group, Inject, Page, Sort } from '@syncfusion/ej2-react-grids';
+import {getDate, groupBy} from '../utils';
 
 const DashboardForm = (props) => {
 
     const [rows, setRows] = useState([]);
-    const { getCourses, getGrades } = useData();
+    const { getGrades } = useData();
     const [averages, setAverages] = useState([]);
 
     const getCoursesData = async () => {
@@ -18,24 +18,6 @@ const DashboardForm = (props) => {
             });
             return grades;
         }
-    };
-
-    function getDate(timestamp) {
-        if (timestamp)
-            return timestamp.toDate().toLocaleDateString('en-UK', { day: "numeric", month: "short", year: "numeric" });
-
-        return "";
-    }
-
-    function groupBy(data, key) {
-        return data.reduce(function (storage, item) {
-
-            var group = item[key.toLowerCase()];
-            storage[group] = storage[group] || [];
-            storage[group].push(item);
-
-            return storage;
-        }, {});
     };
 
     useEffect(() => {

@@ -6,7 +6,7 @@ import useAuth from "../services/firebase/useAuth";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {theme} from '../config/theme'
+import PropTypes from 'prop-types';
 
 
 const Login = (props) => {
@@ -78,5 +78,7 @@ const Login = (props) => {
     </>
   );
 }
+
+Login.propTypes={}
 
 export default Login;

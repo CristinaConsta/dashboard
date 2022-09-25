@@ -1,10 +1,10 @@
 import './App.css';
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Login from "./Views/Login";
 import theme from "./config/theme.js";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./config/GlobalStyles";
-import { Switch, Route, useLocation, Redirect, BrowserRouter} from "react-router-dom";
+import { Switch, Route, useLocation, Redirect, BrowserRouter } from "react-router-dom";
 import Charts from './Views/Charts';
 import Dashboard from './Views/Dashboard';
 import Welcome from './Views/Welcome';
@@ -12,6 +12,7 @@ import useAuth from "./services/firebase/useAuth";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./config/firebase.js";
 import NavigationBar from "./Components/NavigationBar";
+import Main from './Views/Main';
 
 
 function App() {
@@ -26,16 +27,6 @@ function App() {
     setMenuOpen(!menuOpen);
     console.log('App.handleClick()');
   };
-
-  const handleOutsideClick = (e) => {
-    //e.preventDefault();
-    setMenuOpen(false);
-    console.log('App.handleOutsideClick()');
-  };
-
-  useEffect(() =>{
-    setMenuOpen(false)
-  },[location]);
 
   function Protected({ authenticated, children, ...rest }) {
 
@@ -57,29 +48,34 @@ function App() {
       />
     );
   }
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [location]);
+
+  console.log(isAuthenticated)
+  console.log(user)
 
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <NavigationBar onClick={handleClick} open={menuOpen} signOut={signUserOut}  />
         <GlobalStyles />
-        <div onClick={handleOutsideClick}>  
-          <Switch>  
-            <Route exact path="/" component={Welcome}/>
-            <Route exact path="/dashboard" component={Dashboard}/>
-            <Route exact path="/charts" component={Charts}/>
-            {/* <Protected authenticated={isAuthenticated} exact path="/Dashboard" >
-              <Dashboard/>
-            </Protected> */}
-            {/* <Protected authenticated={isAuthenticated} exact path="/Charts"/>
-              <Charts/>
-            <Protected/> */}
-           </Switch>
-          </div>
+        <div onClick={handleClick}>
+          <Switch>
+            <Route exact path="/">
+              <Main user={user} page={'welcome'} />
+            </Route>
+            <Route exact path="/Dashboard">
+              <Main user={user} page={'dashboard'} />
+            </Route>
+            <Route exact path="/charts">
+              <Main user={user} page={'charts'} />
+            </Route>
+          </Switch>
+        </div>
       </ThemeProvider>
     </div>
   );
 }
-  
+
 
 export default App;

@@ -20,9 +20,9 @@ const StyledParagraph = styled.p`
 `;
 
     return (
-    <div>
-        <StyledHeading1> Charts </StyledHeading1>
-        <ChartForm barCount={10} bars={50}/>
+    <div style={{height: "100vh"}}>
+        {/* <StyledHeading1> Charts </StyledHeading1> */}
+        <ChartForm/>
     </div>
 );
 };

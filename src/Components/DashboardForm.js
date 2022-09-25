@@ -36,15 +36,15 @@ const DashboardForm = (props) => {
                 Object.keys(courses).forEach(course => {
                     var courseSum = 0;
                     courses[course].forEach(g => {
-                        courseSum += g.mark;
+                        courseSum += (g.mark * g.weight / 100);
                     });
 
                     yearSum += courseSum;
-                    var courseAverage = courseSum / courses[course].length;
+                    var courseAverage = courseSum;
                     courseAverages.push({course: course, average: courseAverage});
                 });
 
-                var yearAverage = yearSum / years[year].length;
+                var yearAverage = yearSum / Object.keys(courses).length;
                 yearAverages.push({ year: year, average: yearAverage, courseAverages: courseAverages });
             });
 
@@ -104,7 +104,7 @@ const DashboardForm = (props) => {
             average = averages.find(x=>x.year===args.items[0].Year).courseAverages.find(x=>x.course===value).average;        
         }
         
-        return name + " " + value + " - Final Mark: " + average;
+        return name + " " + value + " - Final Mark: " + average.toFixed(2);
     }
 
     return (

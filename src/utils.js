@@ -25,4 +25,34 @@ function compareByYear(a, b) {
     return 0;
 }
 
-export {getDate, groupBy, compareByYear}
+function getYearAverages(grades)
+{
+    var yearAverages = [];
+
+    var years = groupBy(grades, 'Year');
+    Object.keys(years).forEach(year => {
+
+        var yearSum = 0;
+        var courses = groupBy(years[year], 'Course');
+
+        var courseAverages = [];
+
+        Object.keys(courses).forEach(course => {
+            var courseSum = 0;
+            courses[course].forEach(g => {
+                courseSum += (g.mark * g.weight / 100);
+            });
+
+            yearSum += courseSum;
+            var courseAverage = courseSum;
+            courseAverages.push({course: course, average: courseAverage});
+        });
+
+        var yearAverage = yearSum / Object.keys(courses).length;
+        yearAverages.push({ year: year, average: yearAverage, courseAverages: courseAverages });
+    });
+
+    return yearAverages;
+}
+
+export {getDate, groupBy, compareByYear, getYearAverages }

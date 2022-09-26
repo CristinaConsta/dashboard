@@ -1,16 +1,16 @@
 import * as React from "react";
 import { useEffect, useState } from 'react';
 import { Category, ChartComponent, ColumnSeries, DataLabel, Inject, Legend, LineSeries, SeriesCollectionDirective, SeriesDirective, Tooltip, MultiLevelLabel, StripLine } from '@syncfusion/ej2-react-charts';
-import { getDate, groupBy, compareByYear } from '../utils';
+import { compareByYear, getYearAverages } from '../utils';
 import useData from "../services/firebase/useData";
 
 const ChartForm = () => {
 
   const { getGrades } = useData();
   const [ categories, setCategories ] = useState([]);
-  const [ data, setData] = useState([]);
+  const [ data, setData ] = useState([]);
 
-  /*const getCoursesData = async () => {
+  const getCoursesData = async () => {
       const gradesSnap = await getGrades();
       let grades = [];
       if (gradesSnap.size) {
@@ -19,29 +19,10 @@ const ChartForm = () => {
           });
           return grades;
       }
-  };*/
+  };
 
-  const marks = [
-    { Course: 'OOP', Mark: 80, Year: 2 },
-    { Course: 'Algorithms', Mark: 75, Year: 3 },
-    { Course: 'Data analysis', Mark: 90, Year: 2 },
-    { Course: 'Python', Mark: 87, Year: 1 },
-    { Course: 'Java', Mark: 84, Year: 3 },
-    { Course: 'Maths', Mark: 75, Year: 2 },
-    { Course: 'Data science', Mark: 56, Year: 1 },
-    { Course: 'Java 2', Mark: 74, Year: 3 },
-    { Course: 'Maths 2', Mark: 65, Year: 2 },
-    { Course: 'Artificial Intelligence', Mark: 43, Year: 2 },
-  ]
-
-  useEffect(() => {
-    
-    // Sort the marks by year
-    marks.sort(compareByYear);
-    
-    // Set the marks
-    setData(marks);
-    
+  function getChartData(marks)
+  {
     // Set the year multi-levels
     var years = {};
 
@@ -69,7 +50,37 @@ const ChartForm = () => {
       startingPoint = endPoint;
     }
 
-    setCategories(categories);
+    return categories;
+  }
+
+  useEffect(() => {
+
+    // Get marks
+
+    var marks = [];
+
+    getCoursesData().then((courseData) => {
+
+      getYearAverages(courseData).forEach(y=>{
+        y.courseAverages.forEach(c=>{
+          marks.push({
+            Year: y.year,
+            Course: c.course,
+            Mark: c.average
+          })
+        })
+      });
+
+      console.log(marks);
+
+      // Sort the marks by year
+      marks.sort(compareByYear);
+        
+      // Set the marks
+      setData(marks);
+
+      setCategories(getChartData(marks));
+    });
 
   }, []);
 
@@ -79,7 +90,10 @@ const ChartForm = () => {
     multiLevelLabels: [{
       categories: categories,
       border: { type: 'Brace', color: 'Black', width: 0.5 },
-    }]
+    }],
+    labelIntersectAction: 'Rotate90'
+    /*minimum: data.length - 1,
+    visibleMinimum: data.length - 1,*/
   };
 
   const primaryyAxis = {
@@ -101,9 +115,13 @@ const ChartForm = () => {
     shared: false
   }
 
+  const zoomPanBehavior = {   
+    enablePanning: true,    
+  };
+
   return (
-    <ChartComponent id='charts' primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} title="Final Marks" tooltip={tooltip} height='100%'>
-      <Inject services={[ColumnSeries, Legend, Tooltip, DataLabel, LineSeries, Category, MultiLevelLabel, StripLine]} />
+    <ChartComponent id='charts' primaryXAxis={primaryxAxis} primaryYAxis={primaryyAxis} title="Final Marks" tooltip={tooltip} height='100%' zoomPanBehavior={zoomPanBehavior}>
+      <Inject services={[ColumnSeries, Legend, Tooltip, DataLabel, LineSeries, Category, MultiLevelLabel, StripLine ]} />
       <SeriesCollectionDirective>
         <SeriesDirective fill='green' dataSource={data} xName='Course' yName='Mark' type='Column' name='Final Mark' />
       </SeriesCollectionDirective>

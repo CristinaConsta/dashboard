@@ -20,7 +20,7 @@ const StyledParagraph = styled.p`
 `;
 
     return (
-    <div style={{height: "100vh"}}>
+    <div>
         {/* <StyledHeading1> Charts </StyledHeading1> */}
         <ChartForm/>
     </div>

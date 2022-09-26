@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useData from "../services/firebase/useData";
 import { ColumnDirective, ColumnsDirective, GridComponent, Filter, Group, Inject, Page, Sort } from '@syncfusion/ej2-react-grids';
-import {getDate, groupBy} from '../utils';
+import {getDate, getYearAverages} from '../utils';
 
 const DashboardForm = (props) => {
 
@@ -23,32 +23,8 @@ const DashboardForm = (props) => {
     useEffect(() => {
 
         getCoursesData().then((grades) => {
-            var yearAverages = [];
-
-            var years = groupBy(grades, 'Year');
-            Object.keys(years).forEach(year => {
-
-                var yearSum = 0;
-                var courses = groupBy(years[year], 'Course');
-
-                var courseAverages = [];
-
-                Object.keys(courses).forEach(course => {
-                    var courseSum = 0;
-                    courses[course].forEach(g => {
-                        courseSum += (g.mark * g.weight / 100);
-                    });
-
-                    yearSum += courseSum;
-                    var courseAverage = courseSum;
-                    courseAverages.push({course: course, average: courseAverage});
-                });
-
-                var yearAverage = yearSum / Object.keys(courses).length;
-                yearAverages.push({ year: year, average: yearAverage, courseAverages: courseAverages });
-            });
-
-            setAverages(yearAverages);
+            
+            setAverages(getYearAverages(grades));
 
             var formattedGrades = [];
 

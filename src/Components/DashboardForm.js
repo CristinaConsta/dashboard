@@ -2,18 +2,22 @@ import React, { useState, useEffect } from "react";
 import useData from "../services/firebase/useData";
 import { ColumnDirective, ColumnsDirective, GridComponent, Filter, Group, Inject, Page, Sort } from '@syncfusion/ej2-react-grids';
 import {getDate, getYearAverages} from '../utils';
+import useAuth from "../services/firebase/useAuth";
+
 
 const DashboardForm = (props) => {
 
     const [rows, setRows] = useState([]);
     const { getGrades } = useData();
     const [averages, setAverages] = useState([]);
+    const { user } = useAuth(); 
 
     const getCoursesData = async () => {
         const gradesSnap = await getGrades();
         let grades = [];
         if (gradesSnap.size) {
             gradesSnap.forEach((doc) => {
+                // if(doc.data().email === user.email)
                 grades.push({ ...doc.data(), ...{ id: doc.id } });
             });
             return grades;

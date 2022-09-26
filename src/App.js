@@ -25,20 +25,19 @@ function App() {
   const handleClick = (e) => {
     // e.preventDefault();
     setMenuOpen(!menuOpen);
-    console.log('App.handleClick()');
+    // console.log('App.handleClick()');
   };
 
   useEffect(() => {
     setMenuOpen(false)
   }, [location]);
-
-  console.log(user);
+ 
 
   return (
     <div>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <div onClick={handleClick}>
+        <div>
           <Switch>
             <Route exact path="/">
               <Main page={'welcome'} />

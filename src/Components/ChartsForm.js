@@ -163,7 +163,7 @@ const ChartForm = () => {
       <ChartComponent id='yearChart' primaryXAxis={primaryxAxisYears} primaryYAxis={primaryyAxis} title="Year Marks" tooltip={tooltip} height='100%' width='25%'>
         <Inject services={[ColumnSeries, Legend, Tooltip, DataLabel, LineSeries, Category, StripLine ]} />
         <SeriesCollectionDirective>
-          <SeriesDirective fill='darkred' dataSource={years} xName='Year' yName='Mark' type='Column' name='Year Mark' />
+          <SeriesDirective fill='darkred' dataSource={years} xName='Year' yName='Mark' type='Column' name='Year Mark' cornerRadius={{ topLeft: 10, topRight: 10 }} />
         </SeriesCollectionDirective>
       </ChartComponent>
     </div>

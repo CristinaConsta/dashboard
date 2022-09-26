@@ -19,7 +19,7 @@ const Main = (props) => {
     const handleClick = (e) => {
       // e.preventDefault();
       setMenuOpen(!menuOpen);
-      console.log('App.handleClick()');
+    //   console.log('App.handleClick()');
     };
 
     if(props.page === 'dashboard')

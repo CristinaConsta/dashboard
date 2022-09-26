@@ -17,8 +17,7 @@ const DashboardForm = (props) => {
         let grades = [];
         if (gradesSnap.size) {
             gradesSnap.forEach((doc) => {
-                // if(doc.data().email === user.email)
-                grades.push({ ...doc.data(), ...{ id: doc.id } });
+            grades.push({ ...doc.data(), ...{ id: doc.id } });
             });
             return grades;
         }

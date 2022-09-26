@@ -6,6 +6,7 @@ import Login from '../Views/Login';
 import React, { useEffect, useState } from 'react';
 import useAuth from "../services/firebase/useAuth";
 import PropTypes from 'prop-types';
+import { useHistory } from "react-router-dom";
 
 function NavigationBar(props) {
 
@@ -13,22 +14,26 @@ function NavigationBar(props) {
   const { signOut } = props; 
   const { user } = useAuth();
 
+  const history = useHistory();
+
   function handleLogout()
   {
-      signOut();
-      window.location.reload();
+      signOut().then(() => {
+        history.push("/");
+        window.location.reload();
+      });
   }
 
   return (
     <Navbar bg="danger" collapseOnSelect variant="dark" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="#Welcome">Solent</Navbar.Brand>
+        <Navbar.Brand href="/">Solent</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Navbar.Brand href="/">Welcome</Navbar.Brand>
-            <Navbar.Brand href="/Dashboard">Dashboard</Navbar.Brand>
-            <Navbar.Brand href="/Charts">Evolution</Navbar.Brand>
+            <Navbar.Brand href={user.email ? "/" : "/"}>Welcome</Navbar.Brand>
+            <Navbar.Brand href={user.email ? "/Dashboard" : "/"}>Dashboard</Navbar.Brand>
+            <Navbar.Brand href={user.email ? "/Charts" : "/"}>Evolution</Navbar.Brand>
           </Nav>
           <Nav>
             <Navbar.Brand>

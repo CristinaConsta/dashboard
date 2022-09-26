@@ -28,32 +28,11 @@ function App() {
     console.log('App.handleClick()');
   };
 
-  function Protected({ authenticated, children, ...rest }) {
-
-    return (
-      <Route
-        {...rest}
-        render={({ location }) =>
-          authenticated ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/",
-                state: { from: location },
-              }}
-            />
-          )
-        }
-      />
-    );
-  }
   useEffect(() => {
     setMenuOpen(false)
   }, [location]);
 
-  console.log(isAuthenticated)
-  console.log(user)
+  console.log(user);
 
   return (
     <div>
@@ -62,13 +41,13 @@ function App() {
         <div onClick={handleClick}>
           <Switch>
             <Route exact path="/">
-              <Main user={user} page={'welcome'} />
+              <Main page={'welcome'} />
             </Route>
             <Route exact path="/Dashboard">
-              <Main user={user} page={'dashboard'} />
+              <Main page={'dashboard'} />
             </Route>
             <Route exact path="/charts">
-              <Main user={user} page={'charts'} />
+              <Main page={'charts'} />
             </Route>
           </Switch>
         </div>

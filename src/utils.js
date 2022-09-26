@@ -16,4 +16,13 @@ function groupBy(data, key) {
     }, {});
 };
 
-export {getDate, groupBy}
+function compareByYear(a, b) {
+    if(a.Year < b.Year)
+        return -1;
+    if(a.Year > b.Year)
+        return 1;
+
+    return 0;
+}
+
+export {getDate, groupBy, compareByYear}

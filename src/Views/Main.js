@@ -15,7 +15,7 @@ const Main = (props) => {
     const app = initializeApp(firebaseConfig);
     const { user, isAuthenticated, signUserOut } = useAuth();
     const location = useLocation();
-  
+
     const handleClick = (e) => {
       // e.preventDefault();
       setMenuOpen(!menuOpen);

@@ -1,11 +1,14 @@
 import * as React from "react";
+import { useEffect, useState } from 'react';
 import { Category, ChartComponent, ColumnSeries, DataLabel, Inject, Legend, LineSeries, SeriesCollectionDirective, SeriesDirective, Tooltip, MultiLevelLabel, StripLine } from '@syncfusion/ej2-react-charts';
-import {getDate, groupBy} from '../utils';
+import { getDate, groupBy, compareByYear } from '../utils';
 import useData from "../services/firebase/useData";
 
 const ChartForm = () => {
 
   const { getGrades } = useData();
+  const [ categories, setCategories ] = useState([]);
+  const [ data, setData] = useState([]);
 
   /*const getCoursesData = async () => {
       const gradesSnap = await getGrades();
@@ -18,42 +21,71 @@ const ChartForm = () => {
       }
   };*/
 
-  const data = [
-    { Course: 'Oop', Mark: 45 },
-    { Course: 'Data analysis', Mark: 75 },
-    { Course: 'My course', Mark: 100 },
-    { Course: 'Cool stuff', Mark: 83 },
-    { Course: 'Course 1', Mark: 90 },
-    { Course: 'Course 2', Mark: 97 },
-    { Course: 'Course 3', Mark: 96 },
-    { Course: 'Course 4', Mark: 78 },
-    { Course: 'Course 5', Mark: 65 },
-  ];
+  const marks = [
+    { Course: 'OOP', Mark: 80, Year: 2 },
+    { Course: 'Algorithms', Mark: 75, Year: 3 },
+    { Course: 'Data analysis', Mark: 90, Year: 2 },
+    { Course: 'Python', Mark: 87, Year: 1 },
+    { Course: 'Java', Mark: 84, Year: 3 },
+    { Course: 'Maths', Mark: 75, Year: 2 },
+    { Course: 'Data science', Mark: 56, Year: 1 },
+    { Course: 'Java 2', Mark: 74, Year: 3 },
+    { Course: 'Maths 2', Mark: 65, Year: 2 },
+    { Course: 'Artificial Intelligence', Mark: 43, Year: 2 },
+  ]
 
-  const primaryxAxis = 
-  { 
+  useEffect(() => {
+    
+    // Sort the marks by year
+    marks.sort(compareByYear);
+    
+    // Set the marks
+    setData(marks);
+    
+    // Set the year multi-levels
+    var years = {};
+
+    marks.forEach(m=>{
+      if(years[m.Year])
+        years[m.Year]++;
+      else
+        years[m.Year] = 1;
+    });
+
+    var categories = [];
+    var startingPoint = -0.5;
+
+    var yearKeys = Object.keys(years);
+
+    for(var year = yearKeys[0]; year <= yearKeys[yearKeys.length-1]; year++)
+    {
+      var endPoint = startingPoint + years[year];
+      categories.push({
+        start: startingPoint,
+        end: endPoint,
+        text: "Year " + year
+      });
+
+      startingPoint = endPoint;
+    }
+
+    setCategories(categories);
+
+  }, []);
+
+  const primaryxAxis =
+  {
     valueType: 'Category',
     multiLevelLabels: [{
-      categories: [
-        {
-          start: -0.5,
-          end: 3.5,
-          text: "Year 1"
-        },
-        {
-          start: 3.5,
-          end: 7.5,
-          text: "Year 2"
-        }
-      ],
+      categories: categories,
       border: { type: 'Brace', color: 'Black', width: 0.5 },
     }]
   };
 
   const primaryyAxis = {
-    title: 'Final Mark', 
-    minimum: 0, 
-    maximum: 100, 
+    title: 'Final Mark',
+    minimum: 0,
+    maximum: 100,
     interval: 10,
     stripLines: [
       { start: 70, end: 100, /*text: 'First',*/ color: 'green', opacity: 0.2, visible: true },
@@ -63,7 +95,7 @@ const ChartForm = () => {
       { start: 0, end: 40, /*text: 'Fail',*/ color: 'red', opacity: 0.2, visible: true }
     ]
   }
-  
+
   const tooltip = {
     enable: true,
     shared: false

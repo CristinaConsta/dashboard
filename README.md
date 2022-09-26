@@ -16,8 +16,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 # Testing the application
 
-You must authenticate with one of the default users:
+You must authenticate with the default user:
 
-`email = dashboard@email.com, password = dashboard12345`
-`email = student1@email.com, password = student11111`
+`email = dashboard@email.com, password = dashboard1234`
 
+to access the Dashboard or the Evolution pages.

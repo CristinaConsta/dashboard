@@ -1,5 +1,5 @@
 # **Assessments Dashboard Application**
-## **Cristina Constantin (5consc70@solent.ac.uk) - Contemporary Web Application**
+## **Cristina Constantin [5consc70@solent.ac.uk] - Contemporary Web Application**
 ### _2022, Solent University_
 
 [Git Repository](https://github.com/CristinaConsta/dashboard.git)
@@ -8,11 +8,10 @@
 # Introduction
 
 The assessment dashboard application is meant to deliver a solution for a problem that I have discovered with the Solent university portal. It is about checking the assesments dates and grades in a single application and at any point we want to, because at the present moment the students need to work with two different applications and with missing elements in both of them. For the dashboard, we cannot filter by year of study, for example, and in the final grades application, there is no data for the past years and for the current year there will be available between the final marking and the start of the new year. Gathering data from other students, using surveys, I found out that there are more issues to address, such as filtering and sorting the assessments, or to see the learning evolution over the years of study. The project is designed to have a single dashboard for all the assessment, past and future, and must contain the grades and the marks for all of them, with the posibility of sorting or filtering the courses and their associated data.
-The grades are already into the Firebase database, because the application is not designed to have a module for a admin or for the teachers, to update the assessment information. Google Firebase is a complex software for application development, which provides authentication and real-time No-SQL database, stored on cloud and therefore available to all the users at any time. Firebase accepts authentication with social media accounts, but, being an application that deals with sensitive information, like the student grades, I had to consider only the email and password authentication. [Firebase website](https://firebase.google.com/)
+The grades are already into the Firebase database, because the application is not designed to have a module for a admin or for the teachers, to update the assessment information. Google Firebase is a complex software for application development, which provides authentication and real-time No-SQL database, stored on cloud and therefore available to all the users at any time. Firebase accepts authentication with social media accounts, but, being an application that deals with sensitive information, like the student grades, I had to consider only the email and password authentication -[Firebase website](https://firebase.google.com/).
 The application is designed for the Solent university students only and accesing the dashboard and the evolution panel are constrained by the login. Being an university application, highly secured, the users are created by the admin and my application must use the users provided. There is no registration, only login into the application, with the user defined for the Firebase database to authenticate, as provided below:
-[email, password]
-`dashboard@email.com, dashboard1234`
-For the front-end development, I have chosen React framework, studied in the current semester, developed by Facebook as a JavaScript library for building complex interactive user interfaces from encapsulated components [React website](https://reactjs.org/). With React I could create a single-page application, capable to interact with the users updating dynamically the current web page with new data from the web server, which provides a much faster transition and a native application perception. Being a component-based framework, React helps to passing large data through the application without changing the state of the DOM and it can render on the server using Node js (https://nodejs.org/en/), using React Native. For styling the user interface and for creating the tables and the charts, I have used the [Bootstrap]( https://react-bootstrap.github.io/) and the [Styled-component]( https://styled-components.com/) libraries. 
+`email = dashboard@email.com, password = dashboard1234`
+For the front-end development, I have chosen React framework, studied in the current semester, developed by Facebook as a JavaScript library for building complex interactive user interfaces from encapsulated components - [React website](https://reactjs.org/). With React I could create a single-page application, capable to interact with the users updating dynamically the current web page with new data from the web server, which provides a much faster transition and a native application perception. Being a component-based framework, React helps to passing large data through the application without changing the state of the DOM and it can render on the server using [Node js](https://nodejs.org/en/), using React Native. For styling the user interface and for creating the tables and the charts, I have used the [Bootstrap]( https://react-bootstrap.github.io/) and the [Styled-component]( https://styled-components.com/) libraries. 
 
 
 # Methodology
@@ -23,18 +22,18 @@ This methodology is a sequential, chronological process, flowing through all the
 
 ## Methods
 
-In my case, I have compiled the requirements from user personas and surveys conducted against Solent university students, to make sure I have enough information to develop a valuable application. The next phase in the Waterfall methodology is the design, that I have created using Figma designing online tool (https://www.figma.com/) and that I explained extensively in the first report. The design follows the requirements of the students and, simultaneously, is limited to the details I thought of being able to produce during the implementation phase, the application development itself. The technical aspects are essential, although in most cases, having a solid analysis and design, should be the shortest and smoothest stage.
+In my case, I have compiled the requirements from user personas and surveys conducted against Solent university students, to make sure I have enough information to develop a valuable application. The next phase in the Waterfall methodology is the design, that I have created using [Figma](https://www.figma.com/) designing online tool and that I explained extensively in the first report. The design follows the requirements of the students and, simultaneously, is limited to the details I thought of being able to produce during the implementation phase, the application development itself. The technical aspects are essential, although in most cases, having a solid analysis and design, should be the shortest and smoothest stage.
 The next step is verification and testing and I have divided it. Firstly, I have conducted my own verification.
 -	Checking for errors and exceptions by:
-o	testing every functionality and every interface
-o	inputting invalid data
-o	using the interface and accessing various controls in a random order, other than the logical one
+*	testing every functionality and every interface
+* inputting invalid data
+*	using the interface and accessing various controls in a random order, other than the logical one
 -	Verifying the implementation of the requirements, one by one, checking the design and the list I had done in the analysis phase.
 The second phase of testing, which in the real life is possible after the deployment, was the user-base one. I have asked two students that I already surveyed in the gathering step, to use my application and to evaluate it, having in mind few aspects:
-o	if the requirements were implemented,
-o	how easy is to use the application
-o	if there are any errors occurring during the testing
-o	in what grade the design was followed
+*	if the requirements were implemented,
+*	how easy is to use the application
+*	if there are any errors occurring during the testing
+*	in what grade the design was followed
 
 
 # Conclusion

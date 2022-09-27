@@ -25,15 +25,15 @@ This methodology is a sequential, chronological process, flowing through all the
 In my case, I have compiled the requirements from user personas and surveys conducted against Solent university students, to make sure I have enough information to develop a valuable application. The next phase in the Waterfall methodology is the design, that I have created using [Figma](https://www.figma.com/) designing online tool and that I explained extensively in the first report. The design follows the requirements of the students and, simultaneously, is limited to the details I thought of being able to produce during the implementation phase, the application development itself. The technical aspects are essential, although in most cases, having a solid analysis and design, should be the shortest and smoothest stage.
 The next step is verification and testing and I have divided it. Firstly, I have conducted my own verification.
 -	Checking for errors and exceptions by:
-```	testing every functionality and every interface
-``` inputting invalid data
-o	using the interface and accessing various controls in a random order, other than the logical one
+*	testing every functionality and every interface
+* inputting invalid data
+*	using the interface and accessing various controls in a random order, other than the logical one
 -	Verifying the implementation of the requirements, one by one, checking the design and the list I had done in the analysis phase.
 The second phase of testing, which in the real life is possible after the deployment, was the user-base one. I have asked two students that I already surveyed in the gathering step, to use my application and to evaluate it, having in mind few aspects:
-o	if the requirements were implemented,
-o	how easy is to use the application
-o	if there are any errors occurring during the testing
-o	in what grade the design was followed
+*	if the requirements were implemented,
+*	how easy is to use the application
+*	if there are any errors occurring during the testing
+*	in what grade the design was followed
 
 
 # Conclusion

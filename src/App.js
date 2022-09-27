@@ -32,7 +32,6 @@ function App() {
     setMenuOpen(false)
   }, [location]);
  
-
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -41,6 +40,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Main page={'welcome'} />
+            </Route>
+            <Route exact path="/welcomeUser">
+              <Main page={'welcome'} isLoggedIn={true} />
             </Route>
             <Route exact path="/Dashboard">
               <Main page={'dashboard'} />

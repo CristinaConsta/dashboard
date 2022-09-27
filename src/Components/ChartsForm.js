@@ -113,13 +113,7 @@ const ChartForm = () => {
     minimum: 0,
     maximum: 100,
     interval: 10,
-    stripLines: [
-      { start: 70, end: 100, /*text: 'First',*/ color: 'green', opacity: 0.2, visible: true },
-      { start: 60, end: 70, /*text: '2:1',*/ color: 'yellow', opacity: 0.5, visible: true },
-      { start: 50, end: 60, /*text: '2:2',*/ color: 'yellow', opacity: 0.2, visible: true },
-      { start: 40, end: 50, /*text: '3:0',*/ color: 'orange', opacity: 0.2, visible: true },
-      { start: 0, end: 40, /*text: 'Fail',*/ color: 'red', opacity: 0.2, visible: true }
-    ],
+
     legendSettings: {
       mode: 'Range',
       visible: true,
@@ -151,10 +145,10 @@ const ChartForm = () => {
 
         <RangeColorSettingsDirective>
           <RangeColorSettingDirective label="Fail" start={1} end={40} colors={colorFail}></RangeColorSettingDirective>
-          <RangeColorSettingDirective label="Third 3" start={41} end={49} colors={colorThird}></RangeColorSettingDirective>
-          <RangeColorSettingDirective label="Lower Second 2:2" start={50} end={59} colors={colorTwoTwo}></RangeColorSettingDirective>
-          <RangeColorSettingDirective label="Upper Second 2:1" start={60} end={69} colors={colorTwoOne}></RangeColorSettingDirective>
-          <RangeColorSettingDirective label="First" start={70} end={100} colors={colorFirst}></RangeColorSettingDirective>
+          <RangeColorSettingDirective label="Third 3" start={41} end={60} colors={colorThird}></RangeColorSettingDirective>
+          <RangeColorSettingDirective label="Lower Second 2:2" start={61} end={70} colors={colorTwoTwo}></RangeColorSettingDirective>
+          <RangeColorSettingDirective label="Upper Second 2:1" start={71} end={80} colors={colorTwoOne}></RangeColorSettingDirective>
+          <RangeColorSettingDirective label="First" start={81} end={100} colors={colorFirst}></RangeColorSettingDirective>
         </RangeColorSettingsDirective>
       </ChartComponent>
       

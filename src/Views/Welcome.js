@@ -18,7 +18,7 @@ const Welcome = (props) => {
     return ( 
     <div>
         <StyledHeading1> Welcome to Solent University! </StyledHeading1> <br></br>
-        <StyledHeading2>Please login to see your grades.</StyledHeading2>
+        {!props.isLoggedIn && <StyledHeading2>Please login to see your grades.</StyledHeading2>}
         <WelcomeForm/>
     </div>
 );

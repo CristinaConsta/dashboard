@@ -104,13 +104,6 @@ const DashboardForm = (props) => {
                 </ColumnsDirective>
                 <Inject services={[Page, Sort, Filter, Group]} />
             </GridComponent>
-
-            {/* <DataGrid
-            rows={rows}
-            columns={columns}
-            autoHeight
-            >
-        </DataGrid> */}
         </div>
     );
 };

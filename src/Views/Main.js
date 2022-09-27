@@ -45,7 +45,7 @@ const Main = (props) => {
         return (
             <div>
                 <NavigationBar onClick={handleClick} open={menuOpen} signOut={signUserOut} />
-                <Welcome />
+                <Welcome isLoggedIn={props.isLoggedIn}/>
             </div>
         )
     }

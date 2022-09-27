@@ -27,11 +27,11 @@ function NavigationBar(props) {
   return (
     <Navbar bg="danger" collapseOnSelect variant="dark" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="/">Solent</Navbar.Brand>
+        <Navbar.Brand href={user.email ? "/welcomeUser" : "/"}>Solent</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Navbar.Brand href={user.email ? "/" : "/"}>Welcome</Navbar.Brand>
+            <Navbar.Brand href={user.email ? "/welcomeUser" : "/"}>Welcome</Navbar.Brand>
             <Navbar.Brand href={user.email ? "/Dashboard" : "/"}>Dashboard</Navbar.Brand>
             <Navbar.Brand href={user.email ? "/Charts" : "/"}>Evolution</Navbar.Brand>
           </Nav>

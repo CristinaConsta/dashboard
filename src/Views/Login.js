@@ -7,6 +7,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PropTypes from 'prop-types';
+import { useHistory } from "react-router-dom";
 
 
 const Login = (props) => {
@@ -16,8 +17,10 @@ const Login = (props) => {
   const { signInEmailUser} = useAuth();
   const [severErrorMessage, setServerErrorMessage] = useState("");
 
+  const history = useHistory();
+
   const handleEmailSubmit = async (data) => {
-      console.log("Login.handleEmailSubmit(): data = ", data);
+      // console.log("Login.handleEmailSubmit(): data = ", data);
 
       try {
           const { email, password } = data;
@@ -27,6 +30,7 @@ const Login = (props) => {
           console.log(e);
       }
 
+      history.push("/welcomeUser");
       window.location.reload();
   };
 

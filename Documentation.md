@@ -56,6 +56,7 @@ There are differences between the design and the implementation, consisting in (
 *	The data is not split by semester, only by course and year
 *	There is no ‘forgot password’ check (this was done in great part because users would be administered by different applications in the real-world)
 These discrepancies are due to the layout I have chosen, as well as further design considerations achieved during the implementation stage, and I feel that most differences are for the better, though some of the features missing in the final product could benefit the users.
+
 The evolution page contains two charts, one per course and one per year of study, to be more explicit for the student, who will need only a few seconds to understand their achievements and progress along the way.
 The conclusion is that the application responds to the needs of the students and in a good amount covers the initial design and the technical requirements for this project. 
 
